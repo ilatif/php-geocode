@@ -46,7 +46,7 @@ class Geocode
      */
     public function __construct($address, $secure_protocol = false)
     {
-        $this->service_url = $secure_protocol ? 'https' . $this->service_url : 'http' . $this->service_url;
+        $this->setServiceUrl($secure_protocol);
         $this->fetchAddressLatLng($address);
         
         $url = $this->getServiceUrl() . '&latlng='.$this->latitude.','.$this->longitude;
@@ -63,6 +63,15 @@ class Geocode
     {
         return $this->service_url;
     }
+
+    /**
+     * Sets the private $service_url
+     */
+    public function setServiceUrl($secure_protocol)
+    {
+        $this->service_url = $secure_protocol ? 'https' . $this->service_url : 'http' . $this->service_url;
+    }
+
 
     /**
      * fetchServiceDetails
